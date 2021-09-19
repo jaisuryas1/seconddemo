@@ -1,0 +1,538 @@
+package com.maven.aqua; 
+ 
+import org.openqa.selenium.*;  
+ 
+import org.openqa.selenium.chrome.ChromeDriver;  
+ 
+//import org.openqa.selenium.firefox.FirefoxDriver;  
+ 
+import org.openqa.selenium.support.ui.Select;  
+ 
+  
+ 
+public class CrossBrowserScript{  
+ 
+public static void main(String[] args) throws InterruptedException{  
+ 
+  
+ 
+ System.setProperty("webdriver.chrome.driver","C:/Users/jaisuryas/eclipse-workspace-Picnicselenium/Projectselenium/drivers/chromedriver.exe");  
+ 
+//chrome web driver instance  
+ 
+WebDriver driver = new ChromeDriver();  
+ 
+driver.get("https://opensource-demo.orangehrmlive.com/");  
+ 
+driver.manage().window().maximize();  
+//login with username and pwd 
+WebElement uname = driver.findElement(By.id("txtUsername"));  
+ 
+uname.sendKeys("Admin");  
+ 
+Thread.sleep(2000);  
+ 
+WebElement passwd = driver.findElement(By.id("txtPassword"));  
+ 
+passwd.sendKeys("admin123");  
+ 
+Thread.sleep(2000);  
+ 
+WebElement submit = driver.findElement(By.id("btnLogin"));  
+ 
+submit.click();  
+ 
+driver.findElement(By.xpath("//b[contains(text(),'Admin')]")).click(); 
+ 
+Thread.sleep(2000); 
+ 
+WebElement usermanagement = driver.findElement(By.id("menu_admin_UserManagement")); 
+ 
+usermanagement.click(); 
+ 
+Thread.sleep(2000); 
+ 
+WebElement adminname = driver.findElement(By.id("searchSystemUser_userName")); 
+ 
+adminname.sendKeys("ajay@123"); 
+ 
+Thread.sleep(2000); 
+ 
+driver.findElement(By.name("searchSystemUser[userType]")).click(); 
+ 
+Thread.sleep(2000); 
+ 
+Select adminuserrole=new Select(driver.findElement(By.name("searchSystemUser[userType]"))); 
+ 
+adminuserrole.selectByValue("1"); 
+ 
+WebElement employeename = driver.findElement(By.cssSelector("#searchSystemUser_employeeName_empName")); 
+ 
+employeename.sendKeys("ajay"); 
+ 
+Thread.sleep(2000); 
+ 
+driver.findElement(By.name("searchSystemUser[status]")).click(); 
+ 
+Thread.sleep(2000); 
+ 
+Select status=new Select(driver.findElement(By.name("searchSystemUser[status]"))); 
+status.selectByValue("1"); 
+ 
+Thread.sleep(2000); 
+ 
+driver.findElement(By.name("btnAdd")).click(); 
+ 
+Thread.sleep(2000); 
+ 
+driver.findElement(By.id("systemUser_userType")).click(); 
+ 
+Thread.sleep(2000); 
+ 
+Select userrole = new Select(driver.findElement(By.xpath("//select[@id='systemUser_userType']"))); 
+userrole.selectByVisibleText("ESS"); 
+ 
+Thread.sleep(2000); 
+ 
+driver.findElement(By.xpath("//input[@id='systemUser_employeeName_empName']")).sendKeys("Jadine Jackie"); 
+ 
+Thread.sleep(2000); 
+ 
+WebElement entername = driver.findElement(By.id("systemUser_userName")); 
+entername.sendKeys("aja@123456"); 
+ 
+Thread.sleep(2000); 
+ 
+driver.findElement(By.id("systemUser_status")).click(); 
+ 
+Thread.sleep(2000); 
+ 
+Select status1=new Select(driver.findElement(By.name("systemUser[status]"))); 
+status1.selectByValue("1"); 
+ 
+Thread.sleep(2000); 
+ 
+WebElement password = driver.findElement(By.xpath("//input[@id='systemUser_password']")); 
+ 
+password.sendKeys("Ajay@123456"); 
+ 
+Thread.sleep(2000); 
+ 
+WebElement cnfrmpassword = driver.findElement(By.id("systemUser_confirmPassword")); 
+cnfrmpassword.sendKeys("Ajay@123456"); 
+ 
+Thread.sleep(2000); 
+ 
+driver.findElement(By.xpath("//input[@id='btnSave']")).click(); 
+ 
+Thread.sleep(2000); 
+ 
+//driver.findElement(By.id("ohrmList_chkSelectRecord_75")).click(); 
+ 
+//Thread.sleep(2000); 
+ 
+//driver.findElement(By.id("btnDelete")).click(); 
+ 
+//Thread.sleep(2000); 
+ 
+//click timesheet  
+WebElement class2 = driver.findElement(By.cssSelector("div.box:nth-child(3) div.inner div.outerbox.no-border:nth-child(1) div.maincontent.group-wrapper div.panel_wrapper div.panel_draggable.panel-preview fieldset.panel_resizable.panel-preview table.quickLaungeContainer tr:nth-child(1) td:nth-child(3) div.quickLaunge a:nth-child(1) > img:nth-child(1)"));  
+ 
+class2.click();  
+ 
+driver.findElement(By.xpath("//input[@id='employee']")).click();  
+ 
+Thread.sleep(2000);  
+ 
+WebElement class3 = driver.findElement(By.id("employee"));  
+ 
+class3.sendKeys("Test User");  
+ 
+driver.findElement(By.id("btnView")).click();  
+ 
+Thread.sleep(2000);  
+ 
+driver.findElement(By.xpath("//select[@id='startDates']")).click();  
+ 
+Thread.sleep(2000);  
+ 
+Select drpdate = new Select (driver.findElement(By.xpath("//select[@id='startDates']")));  
+ 
+drpdate.selectByValue("1");  
+ 
+Thread.sleep(2000);  
+ 
+WebElement class4 = driver.findElement(By.id("menu_dashboard_index"));  
+ 
+class4.click();  
+//click logout menu 
+driver.findElement(By.className("panelTrigger")).click();  
+ 
+//driver.findElement(By.linkText("Logout")).click();  
+ 
+//driver.findElement(By.cssSelector("div:nth-child(1) div.panelContainer:nth-child(15) ul:nth-child(1) li:nth-child(3) > a:nth-child(1)")).click();  
+ 
+driver.findElement(By.xpath("//a[contains(text(),'Logout')]")).click();  
+ 
+//driver.quit(); 
+ 
+//Dashboard 
+ 
+//Try to click Apply leave 
+driver.findElement(By.className("quickLinkText")).click(); 
+Thread.sleep(3000); 
+//Filling Assign Leave form  
+driver.findElement(By.xpath("//input[@id='assignleave_txtEmployee_empName']")).sendKeys("Paul Collings"); 
+//dropdown 
+Select drpCountry = new Select(driver.findElement(By.name("assignleave[txtLeaveType]"))); 
+drpCountry.selectByVisibleText("US - FMLA"); 
+//Calender  
+//From date 
+driver.findElement(By.xpath("//body/div[@id='wrapper']/div[@id='content']/div[@id='assign-leave']/div[2]/form[1]/fieldset[1]/ol[1]/li[4]/img[1]")).click(); 
+Select selectmonth = new Select(driver.findElement(By.className("ui-datepicker-month"))); 
+selectmonth.selectByVisibleText("Feb"); 
+Select selectyear = new Select(driver.findElement(By.className("ui-datepicker-year"))); 
+selectyear.selectByVisibleText("2000"); 
+driver.findElement(By.xpath("//a[contains(text(),'23')]")).click(); 
+//Calender 
+//To date 
+driver.findElement(By.xpath("//body/div[@id='wrapper']/div[@id='content']/div[@id='assign-leave']/div[2]/form[1]/fieldset[1]/ol[1]/li[5]/img[1]")).click(); 
+Select selecttomonth = new Select(driver.findElement(By.cssSelector("body:nth-child(2) div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all:nth-child(4) div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all div.ui-datepicker-title > select.ui-datepicker-month"))); 
+selecttomonth.selectByVisibleText("Feb"); 
+Select selecttoyear = new Select(driver.findElement(By.xpath("//body/div[@id='ui-datepicker-div']/div[1]/div[1]/select[2]"))); 
+selecttoyear.selectByVisibleText("2000"); 
+driver.findElement(By.xpath("//a[contains(text(),'24')]")).click(); 
+//Partial days 
+Select partialdays = new Select(driver.findElement(By.id("assignleave_partialDays"))); 
+partialdays.selectByVisibleText("All Days"); 
+Select partialdays1 = new Select(driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[2]/form[1]/fieldset[1]/ol[1]/li[8]/select[1]"))); 
+partialdays1.selectByVisibleText("Half Day"); 
+Select partialdays2 = new Select(driver.findElement(By.cssSelector("#assignleave_firstDuration_ampm"))); 
+partialdays2.selectByVisibleText("Afternoon"); 
+//Comments 
+driver.findElement(By.tagName("textarea")).sendKeys("Sick Leave"); 
+Thread.sleep(3000); 
+//Click Assign button 
+driver.findElement(By.xpath("//input[@id='assignBtn']")).click(); 
+Thread.sleep(5000); 
+//Click Ok 
+driver.findElement(By.id("confirmOkButton")).click(); 
+Thread.sleep(5000); 
+ 
+//Navigating to Dashboard 
+driver.navigate().back(); 
+Thread.sleep(5000); 
+driver.navigate().back(); 
+Thread.sleep(5000); 
+ 
+ 
+//Click on My leave 
+driver.findElement(By.xpath("//span[contains(text(),'My Leave')]")).click(); 
+Thread.sleep(3000); 
+//Calender  
+driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[2]/form[1]/fieldset[1]/ol[1]/li[1]/img[1]")).click(); 
+//From date 
+Select selectmonth1 = new Select(driver.findElement(By.xpath("//body/div[@id='ui-datepicker-div']/div[1]/div[1]/select[1]"))); 
+selectmonth1.selectByVisibleText("Feb"); 
+Select selectyear1 = new Select(driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/select[2]"))); 
+selectyear1.selectByVisibleText("2000"); 
+driver.findElement(By.xpath("//tbody/tr[4]/td[3]/a[1]")).click(); 
+//Calender 
+//To date 
+driver.findElement(By.xpath("//body/div[@id='wrapper']/div[@id='content']/div[@id='leave-list-search']/div[2]/form[1]/fieldset[1]/ol[1]/li[2]/img[1]")).click(); 
+Select selecttomonth1 = new Select(driver.findElement(By.cssSelector("body:nth-child(2) div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all:nth-child(4) div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all div.ui-datepicker-title > select.ui-datepicker-month"))); 
+selecttomonth1.selectByVisibleText("Feb"); 
+Select selecttoyear1 = new Select(driver.findElement(By.xpath("//body/div[@id='ui-datepicker-div']/div[1]/div[1]/select[2]"))); 
+selecttoyear1.selectByVisibleText("2000"); 
+driver.findElement(By.xpath("//tbody/tr[4]/td[4]/a[1]")).click(); 
+Thread.sleep(3000); 
+// Selecting CheckBox  
+        WebElement option1 = driver.findElement(By.cssSelector("#leaveList_chkSearchFilter_0")); 
+        option1.click(); 
+        Thread.sleep(3000); 
+//Click on search button 
+driver.findElement(By.name("btnSearch")).click(); 
+ 
+//Navigating to Dashboard 
+driver.navigate().back(); 
+Thread.sleep(5000); 
+driver.navigate().back(); 
+Thread.sleep(5000); 
+ 
+ 
+//Click on leave list 
+driver.findElement(By.xpath("//span[contains(text(),'Leave List')]")).click(); 
+ 
+//Calender 
+//From Date 
+driver.findElement(By.xpath("//body/div[@id='wrapper']/div[@id='content']/div[@id='leave-list-search']/div[2]/form[1]/fieldset[1]/ol[1]/li[1]/img[1]")).click(); 
+Select leavelistmonth1 = new Select(driver.findElement(By.xpath("//body/div[@id='ui-datepicker-div']/div[1]/div[1]/select[1]"))); 
+leavelistmonth1.selectByVisibleText("Dec"); 
+Select leavelistyear1 = new Select(driver.findElement(By.xpath("//body/div[@id='ui-datepicker-div']/div[1]/div[1]/select[2]"))); 
+leavelistyear1.selectByVisibleText("2000"); 
+driver.findElement(By.xpath("//tbody/tr[1]/td[5]/a[1]")).click(); 
+//To Date 
+driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[2]/form[1]/fieldset[1]/ol[1]/li[2]/img[1]")).click(); 
+Select leavelistmonth2 = new Select(driver.findElement(By.xpath("//body/div[@id='ui-datepicker-div']/div[1]/div[1]/select[1]"))); 
+leavelistmonth2.selectByVisibleText("Feb"); 
+Select leavelistyear2 = new Select(driver.findElement(By.xpath("//body/div[@id='ui-datepicker-div']/div[1]/div[1]/select[2]"))); 
+leavelistyear2.selectByVisibleText("2020"); 
+driver.findElement(By.xpath("//tbody/tr[5]/td[3]/a[1]")).click(); 
+//Check box 
+driver.findElement(By.cssSelector("#leaveList_chkSearchFilter_checkboxgroup_allcheck")).click(); 
+//Including past employees check box 
+driver.findElement(By.xpath("//input[@id='leaveList_cmbWithTerminated']")).click(); 
+//click on search butto 
+driver.findElement(By.xpath("//input[@id='btnSearch']")).click(); 
+ 
+//Myinfo 
+        //Personal details 
+        WebElement class1 = driver.findElement(By.id("menu_pim_viewMyDetails")); 
+        class1.click(); 
+        driver.findElement(By.xpath("//input[@id='btnSave']")).click(); 
+        driver.findElement(By.id("personal_txtLicenNo")).sendKeys("4567"); 
+        driver.findElement(By.cssSelector("#personal_txtNICNo")).sendKeys("123456"); 
+        driver.findElement(By.xpath("//input[@id='btnSave']")).click(); 
+                 
+        //Custom fields 
+        driver.findElement(By.xpath("//input[@id='btnEditCustom']")).click(); 
+        driver.findElement(By.cssSelector("div.box.pimPane:nth-child(1) div.single:nth-child(4) div.inner form:nth-child(1) ol:nth-child(3) li:nth-child(1) > select.editable:nth-child(2)")).sendKeys("B+"); 
+        driver.findElement(By.xpath("//input[@id='btnEditCustom']")).click(); 
+ 
+ 
+        //Add attachments 
+        driver.findElement(By.xpath("//input[@id='btnAddAttachment']")).click(); 
+        driver.findElement(By.cssSelector("#ufile")).sendKeys("C:\\Users\\priyadarshinib\\Downloads\\image001.jpg"); 
+        driver.findElement(By.xpath("//input[@id='btnSaveAttachment']")).click(); 
+        Thread.sleep(5000); 
+         
+         
+                //Contact details 
+       WebElement contact = driver.findElement(By.partialLinkText("Contact Detai")); 
+       contact.click(); 
+       driver.findElement(By.id("btnSave")).click(); 
+       driver.findElement(By.id("contact_country")).click(); 
+     Select drop = new Select (driver.findElement(By.id("contact_country"))); 
+     drop.selectByValue("AL"); 
+     driver.findElement(By.cssSelector("#contact_city")).sendKeys("chennai"); 
+     driver.findElement(By.xpath("//input[@id='contact_emp_zipcode']")).sendKeys("621109"); 
+     driver.findElement(By.id("btnSave")).click(); 
+      
+     //Immigration 
+      
+     driver.findElement(By.partialLinkText("Immigrati")).click(); 
+     driver.findElement(By.xpath("//input[@id='btnAdd']")).click(); 
+       driver.findElement(By.cssSelector("#immigration_number")).sendKeys("123456"); 
+       driver.findElement(By.id("btnSave")).click(); 
+ 
+driver.findElement(By.xpath("//*[@id=\"menu_recruitment_viewRecruitmentModule\"]/b")).click(); 
+          
+                //Add candidate  
+                driver.findElement(By.cssSelector("#btnAdd")).click(); 
+                 
+                WebElement fname = driver.findElement(By.id("addCandidate_firstName")); 
+                fname.sendKeys("Aradhana"); 
+                WebElement mname = driver.findElement(By.id("addCandidate_middleName")); 
+                mname.sendKeys("Steena"); 
+                WebElement lname = driver.findElement(By.id("addCandidate_lastName")); 
+                lname.sendKeys("Chris"); 
+                WebElement email = driver.findElement(By.id("addCandidate_email")); 
+                email.sendKeys("steena_aradhana@gamil.com"); 
+                Thread.sleep(3000); 
+                driver.findElement(By.xpath("//*[@id=\"btnSave\"]")).click(); 
+                Thread.sleep(3000); 
+                driver.findElement(By.xpath("//*[@id=\"btnBack\"]")).click(); 
+                Thread.sleep(3000); 
+                 
+                //Delete 
+                WebElement check_box = driver.findElement(By.xpath("//*[@id=\"ohrmList_chkSelectRecord_14_7\"]")); 
+                check_box.click(); 
+                driver.findElement(By.id("btnDelete")).click(); 
+                Thread.sleep(3000); 
+                driver.findElement(By.id("dialogDeleteBtn")).click(); 
+                Thread.sleep(3000); 
+                
+                 
+                //Search Candidate 
+                driver.findElement(By.id("candidateSearch_jobTitle")).click(); 
+                Select drpJobTitle = new Select(driver.findElement(By.xpath(" //*[@id=\"candidateSearch_jobTitle\"]"))); 
+                drpJobTitle.selectByValue("8"); 
+                Thread.sleep(1000); 
+                 
+                driver.findElement(By.id("candidateSearch_jobVacancy")).click(); 
+                Select drpVacancy = new Select(driver.findElement(By.xpath("//*[@id=\"candidateSearch_jobVacancy\"]"))); 
+                drpVacancy.selectByVisibleText("All"); 
+                Thread.sleep(1000); 
+                 
+                driver.findElement(By.id("candidateSearch_hiringManager")).click(); 
+                Select drpHiringManager = new Select(driver.findElement(By.xpath("//*[@id=\"candidateSearch_hiringManager\"]"))); 
+                drpHiringManager.selectByVisibleText("All"); 
+                Thread.sleep(1000); 
+                 
+                driver.findElement(By.id("candidateSearch_status")).click(); 
+                Select drpStatus = new Select(driver.findElement(By.xpath("//*[@id=\"candidateSearch_status\"]"))); 
+                drpStatus.selectByValue("APPLICATION INITIATED"); 
+                Thread.sleep(1000); 
+                 
+                WebElement cname = driver.findElement(By.id("candidateSearch_candidateName")); 
+                cname.sendKeys("Peter Smith"); 
+                Thread.sleep(3000); 
+                 
+                driver.findElement(By.xpath("//*[@id=\"frmSrchCandidates\"]/fieldset/ol/li[7]/img")).click(); 
+                Select drpmonth = new Select(driver.findElement(By.xpath("//*[@id=\"ui-datepicker-div\"]/div/div/select[1]"))); 
+                drpmonth.selectByIndex(9); 
+                 
+                driver.findElement(By.cssSelector("#ui-datepicker-div > div > div > select.ui-datepicker-year")).click(); 
+                Select drpyear = new Select(driver.findElement(By.xpath("//*[@id=\"ui-datepicker-div\"]/div/div/select[2]"))); 
+                drpyear.selectByValue("2020"); 
+                Thread.sleep(3000); 
+                 
+                driver.findElement(By.xpath("//*[@id=\"ui-datepicker-div\"]/table/tbody/tr[2]/td[4]/a")).click(); 
+                WebElement search = driver.findElement(By.name("btnSrch")); 
+                search.click(); 
+                Thread.sleep(3000); 
+                 
+                //Reset 
+                driver.findElement(By.xpath("//*[@id=\"btnRst\"]")).click(); 
+                Thread.sleep(3000); 
+driver.findElement(By.xpath("//*[@id=\"menu_recruitment_viewRecruitmentModule\"]/b")).click(); 
+          
+         //vacancies tab 
+         driver.findElement(By.id("menu_recruitment_viewJobVacancy")).click(); 
+          
+         
+          
+         //Add vacancies 
+         driver.findElement(By.id("btnAdd")).click(); 
+          
+         driver.findElement(By.tagName("select")).click(); 
+         Select drpJob = new Select(driver.findElement(By.xpath("//*[@id=\"addJobVacancy_jobTitle\"]"))); 
+         drpJob.selectByVisibleText("Account Assistant"); 
+          
+         WebElement vacancy = driver.findElement(By.name("addJobVacancy[name]")); 
+         vacancy.sendKeys("Test"); 
+          
+         WebElement hiring = driver.findElement(By.id("addJobVacancy_hiringManager")); 
+         hiring.sendKeys("Prajakta Dhumal"); 
+         Thread.sleep(3000); 
+          
+         driver.findElement(By.xpath("//*[@id=\"btnSave\"]")).click(); 
+         driver.findElement(By.xpath("//*[@id=\"btnBack\"]")).click(); 
+         Thread.sleep(3000); 
+          
+          //searching from the list below by clicking 
+         driver.findElement(By.linkText("Associate IT Manager")).click(); 
+         Thread.sleep(2000); 
+         driver.findElement(By.id("btnBack")).click(); 
+         
+         //Delete 
+         WebElement checkbox = driver.findElement(By.xpath("//*[@id=\"ohrmList_chkSelectRecord_7\"]")); 
+         checkbox.click(); 
+         driver.findElement(By.id("btnDelete")).click(); 
+         Thread.sleep(3000); 
+         driver.findElement(By.id("dialogDeleteBtn")).click(); 
+         Thread.sleep(3000); 
+        
+          
+         //search vacancies 
+         driver.findElement(By.cssSelector("#vacancySearch_jobTitle")).click(); 
+         Select drpJTitle = new Select(driver.findElement(By.xpath("//*[@id=\"vacancySearch_jobTitle\"]"))); 
+         drpJTitle.selectByValue("8"); 
+         Thread.sleep(1000); 
+         
+         driver.findElement(By.cssSelector("#vacancySearch_jobVacancy")).click(); 
+         Select Vacancy = new Select(driver.findElement(By.xpath("//*[@id=\"vacancySearch_jobVacancy\"]"))); 
+         Vacancy.selectByVisibleText("All"); 
+         Thread.sleep(1000); 
+          
+         driver.findElement(By.cssSelector("#vacancySearch_hiringManager")).click(); 
+         Select HiringManager = new Select(driver.findElement(By.xpath("//*[@id=\"vacancySearch_hiringManager\"]"))); 
+         HiringManager.selectByVisibleText("All"); 
+         Thread.sleep(1000); 
+          
+         driver.findElement(By.cssSelector("#vacancySearch_status")).click(); 
+         Select Status = new Select(driver.findElement(By.xpath("//*[@id=\"vacancySearch_status\"]"))); 
+         Status.selectByValue("1"); 
+         Thread.sleep(1000); 
+          
+          
+         driver.findElement(By.xpath("//*[@id=\"btnSrch\"]")).click(); 
+         Thread.sleep(3000); 
+    
+          
+         //Reset 
+         driver.findElement(By.xpath("//*[@id=\"btnRst\"]")).click(); 
+ 
+ 
+ 
+//Buzz 
+WebElement buzz = driver.findElement(By.id("menu_buzz_viewBuzz")); 
+buzz.click(); 
+ 
+//1.uploadstatus  
+WebElement uploadstatus = driver.findElement(By.id("status-tab-label"));//upload status tab 
+uploadstatus.click(); 
+ 
+WebElement placeholder = driver.findElement(By.id("createPost_content"));//create content 
+placeholder.click(); 
+placeholder.sendKeys("hey"); 
+Thread.sleep(3000); 
+WebElement post = driver.findElement(By.id("postSubmitBtn"));//submit the post that we have written 
+ post.click(); 
+//2.uploadimage  
+WebElement imagetab = driver.findElement(By.id("images-tab-label"));//upload image tab 
+imagetab.click(); 
+Thread.sleep(3000); 
+ 
+WebElement phototext = driver.findElement(By.id("phototext"));//textbar photo content 
+phototext.click(); 
+phototext.sendKeys("HI hello"); 
+Thread.sleep(3000); 
+ 
+ 
+        WebElement uploadimage = driver.findElement(By.xpath("//input[@id='image-upload-button']"));//upload image button 
+uploadimage.click(); 
+Thread.sleep(3000); 
+WebElement photo = driver.findElement(By.xpath("//form[@id='frmUploadImage']/fieldset/ol/li[2]/input")); 
+    photo.sendKeys("C:\\Users\\asritharamr\\Pictures\\Screenshots\\as.png");//photo or file location 
+//photo.click 
+Thread.sleep(3000); 
+ 
+WebElement done = driver.findElement(By.id("imageUploadBtn"));//upload image button 
+done.click(); 
+    Thread.sleep(3000); 
+ 
+     
+ System.out.println(driver.findElements(By.tagName("img")).size()); 
+ System.out.println("File is Uploaded Successfully");// total number of tags or used to printed 
+//3.dropdown   
+ WebElement  dropdown= driver.findElement(By.xpath("//div[@id='rightBarHeadingAnniv']")); 
+ dropdown.click(); 
+         Thread.sleep(3000); 
+         WebElement  dropdown1= driver.findElement(By.xpath("//div[@id='rightBarHeadingAnniv']")); 
+ dropdown1.click(); 
+         Thread.sleep(3000); 
+         
+         WebElement  mostliked= driver.findElement(By.id("rightBarHeadingMl")); 
+mostliked.click(); 
+         Thread.sleep(2000); 
+         WebElement  mostliked1= driver.findElement(By.id("rightBarHeadingMl")); 
+  mostliked1.click(); 
+          Thread.sleep(2000); 
+          
+         WebElement  mostcommented= driver.findElement(By.cssSelector("#rightBarHeadingMc")); 
+  mostcommented.click(); 
+          Thread.sleep(2000); 
+           
+          WebElement  mostcommented1= driver.findElement(By.cssSelector("#rightBarHeadingMc")); 
+   mostcommented1.click(); 
+           Thread.sleep(2000); 
+ 
+
+} 
+} 
+
+
+
+
+
